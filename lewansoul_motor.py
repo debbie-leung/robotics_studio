@@ -8,8 +8,13 @@ from math import sin, cos
 LX16A.initialize('/dev/ttyUSB0')
 
 # There should two servos connected, with IDs 1 and 2
-servo1 = LX16A(1)
-servo2 = LX16A(2)
+servo1 = LX16A(11)
+print(servo1.IDRead())
+servo2 = LX16A(13)
+print(servo2.IDRead())
+#print(servo1.moveTimeRead())
+#servo1.moveTimeWrite(120, time=10000) 
+
 t=0
 while True:
     # Two sine waves out of phase
