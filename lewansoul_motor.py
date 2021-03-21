@@ -10,8 +10,11 @@ LX16A.initialize('/dev/ttyUSB0')
 # There should two servos connected, with IDs 1 and 2
 servo1 = LX16A(11)
 print(servo1.IDRead())
+print(servo1.getPhysicalPos())
+servo1.moveTimeWrite(120, time=1000)
 servo2 = LX16A(13)
 print(servo2.IDRead())
+print(servo2.getPhysicalPos())
 #print(servo1.moveTimeRead())
 #servo1.moveTimeWrite(120, time=10000) 
 
