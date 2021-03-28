@@ -1,5 +1,8 @@
 from lx16a import *
 from math import sin, cos
+import numpy as np
+import matplotlib.pyplot as plt
+
 # This is the port that the controller board is connected to
 # This will be different for different computers
 # On Windows, try the ports COM1, COM2, COM3, etc... 
@@ -24,17 +27,23 @@ print(servo14.getPhysicalPos())
 #print(servo1.moveTimeRead())
 #servo1.moveTimeWrite(120, time=10000) 
 
-t=0
+t = 0
 w = 2
 a = 120
 b = 50
 c = 0
 
-while True:
+y_servo11 = []
+while t < 10:
     # Two sine waves out of phase   
     servo11.moveTimeWrite(a+b*sin(w*t+c), time = 10)
+    y_servo11.append(servo11.getPhysicalPos())
     servo12.moveTimeWrite(a+b*sin(w*t+c), time = 10)
     servo13.moveTimeWrite(a+b*cos(w*t+c), time = 10)
     servo14.moveTimeWrite(a+b*cos(w*t+c), time = 10)
     t += 0.01
+    
+time = np.arange(0, t, 0.01)
+plt.plot(time, y_servo11)
+plt.show()
     
