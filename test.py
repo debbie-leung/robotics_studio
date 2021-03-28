@@ -8,21 +8,24 @@ from math import sin, cos
 LX16A.initialize('/dev/ttyUSB0')
 
 # There should two servos connected, with IDs 1 and 2
-servo11 = LX16A(11)
-print(servo11.IDRead())
-print(servo11.getPhysicalPos())
+servo21 = LX16A(21)
+print(servo21.IDRead())
+print(servo21.getPhysicalPos())
 #servo1.moveTimeWrite(120, time=1000)
-servo12 = LX16A(12)
-print(servo12.IDRead())
-print(servo12.getPhysicalPos())
-servo13 = LX16A(13)
-print(servo13.IDRead())
-print(servo13.getPhysicalPos())
-servo14 = LX16A(14)
-print(servo14.IDRead())
-print(servo14.getPhysicalPos())
+servo22 = LX16A(22)
+print(servo22.IDRead())
+print(servo22.getPhysicalPos())
+servo23 = LX16A(23)
+print(servo23.IDRead())
+print(servo23.getPhysicalPos())
+servo24 = LX16A(24)
+print(servo24.IDRead())
+print(servo24.getPhysicalPos())
 #print(servo1.moveTimeRead())
 #servo1.moveTimeWrite(120, time=10000) 
+
+servo21.moveTimeWrite(100, time = 10000)
+servo23.moveTimeWrite(100, time = 10000)
 
 t=0
 w = 2
@@ -32,9 +35,9 @@ c = 0
 
 while True:
     # Two sine waves out of phase   
-    servo11.moveTimeWrite(a+b*sin(w*t+c), time = 10)
-    servo12.moveTimeWrite(a+b*sin(w*t+c), time = 10)
-    servo13.moveTimeWrite(a+b*cos(w*t+c), time = 10)
-    servo14.moveTimeWrite(a+b*cos(w*t+c), time = 10)
+    
+    servo22.moveTimeWrite(a+b*sin(w*t+c), time = 10)
+    
+    servo24.moveTimeWrite(a+b*cos(w*t+c), time = 10)
     t += 0.01
     
