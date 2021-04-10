@@ -43,7 +43,7 @@ while t < 10:
     servo14.moveTimeWrite(a+b*cos(w*t+c), time = 10)
     t += 0.01
     
-time = np.arange(0, t, 0.01)
-plt.plot(time, y_servo11)
-plt.show()
+#time = np.arange(0, t, 0.01)
+#plt.plot(time, y_servo11)
+#plt.show()
     

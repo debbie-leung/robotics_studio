@@ -43,7 +43,7 @@ while True:
         back_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
         front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
         back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
-    	t += 0.01
+        t += 0.01
     time.sleep(1)
 
     # if time.time() == 7:
