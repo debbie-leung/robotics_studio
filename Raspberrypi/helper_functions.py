@@ -21,3 +21,16 @@ def readMotor():
     servo24 = LX16A(24)
     servos.append(servo24)
     return servos
+
+def homing(t):
+    servos = readMotor()
+    print(servos)
+
+# 2. Move to initial home positions (120 degrees)
+    for i in range(8):
+        if (servos[i].getPhysicalPos() != 120):
+        servos[i].moveTimeWrite(120, time=t)
+        print(servos[i].getPhysicalPos())
+        
+# Check motors have reached home configurations
+#print(assert(servos[i].getPhysicalPos() == 120 for i in range(8)))

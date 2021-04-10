@@ -13,20 +13,20 @@ robotStartOrientation= p.getQuaternionFromEuler([0,0,0])
 robotId= p.loadURDF("dumbo_color.urdf", robotStartPos, robotStartOrientation)
 mode = p.POSITION_CONTROL
 jointIndex = [i for i in range(8)]
-# 2 motor leg thigh (21)
-# 2 motor leg calf (22)
-# 2 motor leg thigh (23)
-# 2 motor leg calf (24)
-# 1 motor leg calf (11)
-# 1 motor leg calf (12)
-# 1 motor leg calf (13)
-# 1 motor leg calf (14)
+jointIndex= 0 # 2 motor leg thigh (1)
+jointIndex1= 1 # 2 motor leg calf (1)
+jointIndex2= 2 # 2 motor leg thigh (2)
+jointIndex3= 3 # 2 motor leg calf (2)
+jointIndex4= 4 # 1 motor leg calf (1)
+jointIndex5= 5 # 1 motor leg calf (2)
+jointIndex6= 6 # 1 motor leg calf (3)
+jointIndex7= 7 # 1 motor leg calf (4)
 
 # original test parameters
 w = 0.1	# beat parameter chould increase/decrease with 1% based on picked up beat
-# a = 0.4		
-# b = 0.8
-# c = 0.6
+a = 0.4		
+b = 0.8
+c = 0.6
 
 # # our first walking parameters
 # w = 0.02		# 2/100 	# beat parameter chould increase/decrease with 1% based on picked up beat
@@ -49,16 +49,17 @@ w = 0.1	# beat parameter chould increase/decrease with 1% based on picked up bea
 for i in range (10000):
     p.stepSimulation()
 
-    a = [random.random() for j in range(8)]
-    b = [random.random() for j in range(8)]
-    c = [random.random() for j in range(8)]
+    # if (i % 10 == 0):
+    #    a = [random.random() for j in range(8)]
+    #    b = [random.random() for j in range(8)]
+    #    c = [random.random() for j in range(8)]
     
-    if i >= 200:
-        num_motors = random.randrange(1,8)
-        motors = random.sample(range(8), num_motors)
-        print(num_motors, motors)
-        for n in motors:
-            p.setJointMotorControl2(robotId, jointIndex[n], controlMode=mode, targetPosition=(a[n]+b[n]*sin(i*w+c[n])))
+    # if i >= 200:
+    #     num_motors = random.randrange(1,8)
+    #     motors = random.sample(range(8), num_motors)
+    #     print(num_motors, motors)
+    #     for n in motors:
+    #         p.setJointMotorControl2(robotId, jointIndex[n], controlMode=mode, targetPosition=(a[n]+b[n]*sin(i*w+c[n])))
             # time.sleep(1./20.)
 
 	# 2 motor leg thigh (1)
@@ -66,10 +67,10 @@ for i in range (10000):
 	# p.setJointMotorControl2(robotId, jointIndex1, controlMode=mode, targetPosition=(a+b*sin(i*w+c)))	# 2 motor leg calf (1)
 	# p.setJointMotorControl2(robotId, jointIndex2, controlMode=mode, targetPosition=(a+b*cos(i*w+c)))	# 2 motor leg thigh (2)
 	# p.setJointMotorControl2(robotId, jointIndex3, controlMode=mode, targetPosition=(a+b*cos(i*w+c)))	# 2 motor leg calf (2)
-	# p.setJointMotorControl2(robotId, jointIndex4, controlMode=mode, targetPosition=(a+b*sin(i*w+c)))	# 1 motor leg calf (1)
-	# p.setJointMotorControl2(robotId, jointIndex5, controlMode=mode, targetPosition=(a+b*sin(i*w+c)))	# 1 motor leg calf (2)
-	# p.setJointMotorControl2(robotId, jointIndex6, controlMode=mode, targetPosition=(a+b*cos(i*w+c)))	# 1 motor leg calf (3)
-	# p.setJointMotorControl2(robotId, jointIndex7, controlMode=mode, targetPosition=(a+b*cos(i*w+c)))	# 1 motor leg calf (4)
+    p.setJointMotorControl2(robotId, jointIndex4, controlMode=mode, targetPosition=(a+b*sin(i*w+c))) # 1 motor leg calf (1)
+    p.setJointMotorControl2(robotId, jointIndex5, controlMode=mode, targetPosition=(a+b*cos(i*w+c))) # 1 motor leg calf (2)
+    p.setJointMotorControl2(robotId, jointIndex6, controlMode=mode, targetPosition=(a+b*sin(i*w+c))) # 1 motor leg calf (3)
+    p.setJointMotorControl2(robotId, jointIndex7, controlMode=mode, targetPosition=(a+b*cos(i*w+c))) # 1 motor leg calf (4)
 
     time.sleep(1./100.) # make this dependent on song
 	# change dance speed with the beat
