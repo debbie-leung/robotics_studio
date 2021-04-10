@@ -22,9 +22,7 @@ def readMotor():
     servos.append(servo24)
     return servos
 
-def homing(t):
-    servos = readMotor()
-    print(servos)
+def homing(servos, t):
 
 # 2. Move to initial home positions (120 degrees)
     for i in range(8):

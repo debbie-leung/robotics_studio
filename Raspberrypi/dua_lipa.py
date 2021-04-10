@@ -14,7 +14,8 @@ servos = f.readMotor()
 print(servos)
 
 # Perform homing
-f.homing(10000)
+#f.homing(servos, 1000)
+time.sleep(2.15)
 
 # Read motors
 front_right = servos[0] #LX16A(11)
@@ -29,45 +30,95 @@ side_right_bottom = servos[7]
 start_time = time.time()
 
 t = 0
-w = 2.07
+w = 2
 a = 120
 b = 50
 c = 0
 
-while True:
+flag = True
+while flag:
     time_now = time.time()
 
     # First move from 0-7s
-    while t < 7:
-        front_right.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-        back_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-        front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-        back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
-        t += 0.01
-    time.sleep(1)
+    while t < 8.5:
+        front_right.moveTimeWrite(a+b*sin(w*t+c))
+        side_right_bottom.moveTimeWrite(a+b*cos(w*t+c))
+        back_right.moveTimeWrite(a+b*sin(w*t+c))
+        back_left.moveTimeWrite(a+b*cos(w*t+c))
+        side_left_bottom.moveTimeWrite(a+b*sin(w*t+c))        
+        front_left.moveTimeWrite(a+b*cos(w*t+c))   
+        t += 0.0075
 
     # if time.time() == 7:
-    f.homing(1000)
+    f.homing(servos, 200)
+    time.sleep(0.5)
 
     # Second move 7-17s
-    side_right_top.moveTimeWrite(180, time=3)
-    side_left_top.moveTimeWrite(180, time=3)
+    side_right_top.moveTimeWrite(160, time=1000)
+    side_left_top.moveTimeWrite(160, time=1000)
 
-    side_right_bottom.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    side_left_bottom.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    front_right.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    back_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    front_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    back_right.moveTimeWrite(a+b*sin(w*t+c),time=1000)
-
+    t = 0
+    while t < 22:
+        side_right_bottom.moveTimeWrite(a+b*sin(w*t+c))
+        side_right_top.moveTimeWrite(160+20*cos(w*t+c))
+        side_left_top.moveTimeWrite(160+20*sin(w*t+c))
+        side_left_bottom.moveTimeWrite(a+b*cos(w*t+c))
+        front_right.moveTimeWrite(a+b*sin(w*t+c))
+        back_left.moveTimeWrite(a+b*sin(w*t+c))
+        front_left.moveTimeWrite(a+b*sin(w*t+c))
+        back_right.moveTimeWrite(a+b*sin(w*t+c))
+        t += 0.01
+    
     # # Third move 17-24s (switch from Second move)
-    # # if time.time() == 17:
-
-    # side_right_bottom.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    # side_left_bottom.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    # front_right.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    # back_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    # front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    # back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
-
-	
+    
+    f.homing(servos, 300)
+    time.sleep(0.5)
+    
+    t = 0
+    while t < 11:
+        side_right_bottom.moveTimeWrite(a+b*sin(w*t+c))
+        front_right.moveTimeWrite(a+b*sin(w*t+c))
+        back_right.moveTimeWrite(a+b*sin(w*t+c))
+        front_left.moveTimeWrite(a+b*cos(w*t+c))
+        back_left.moveTimeWrite(a+b*cos(w*t+c))
+        side_left_bottom.moveTimeWrite(a+b*cos(w*t+c))
+        t += 0.0075
+        
+    # Fourth move
+    f.homing(servos, 300)
+    time.sleep(0.5)
+    
+    t = 0
+    while t < 5:
+        side_right_bottom.moveTimeWrite(a+b*sin(w*t+c))
+        front_right.moveTimeWrite(a+b*sin(w*t+c))
+        back_right.moveTimeWrite(a+b*sin(w*t+c))
+        front_left.moveTimeWrite(a+b*sin(w*t+c))
+        back_left.moveTimeWrite(a+b*sin(w*t+c))
+        side_left_bottom.moveTimeWrite(a+b*sin(w*t+c))
+        t += 0.0075
+    
+    f.homing(servos, 300)
+    time.sleep(0.5)
+    
+    t = 0
+    while t < 5:
+        front_right.moveTimeWrite(a+b*sin(w*t+c))        
+        front_left.moveTimeWrite(a+b*sin(w*t+c))
+        back_right.moveTimeWrite(a+b*cos(w*t+c))
+        back_left.moveTimeWrite(a+b*cos(w*t+c))
+        side_right_top.moveTimeWrite(a+20*cos(w*t+c))
+        side_left_top.moveTimeWrite(a+20*sin(w*t+c))
+        t += 0.0075
+    
+#    t = 0
+#    while t < 12:
+#        side_right_bottom.moveTimeWrite(a+b*cos(w*t+c))
+#        side_left_bottom.moveTimeWrite(a+b*sin(w*t+c))
+#        front_right.moveTimeWrite(a+b*cos(w*t+c))
+#        back_left.moveTimeWrite(a+b*cos(w*t+c))
+#        front_left.moveTimeWrite(a+b*cos(w*t+c))
+#        back_right.moveTimeWrite(a+b*cos(w*t+c))
+#        t += 0.0075
+    
+    flag = False
