@@ -29,7 +29,7 @@ def homing(t):
 # 2. Move to initial home positions (120 degrees)
     for i in range(8):
         if (servos[i].getPhysicalPos() != 120):
-        servos[i].moveTimeWrite(120, time=t)
+            servos[i].moveTimeWrite(120, time=t)
         print(servos[i].getPhysicalPos())
         
 # Check motors have reached home configurations
