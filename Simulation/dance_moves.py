@@ -23,7 +23,7 @@ jointIndex = [i for i in range(8)]
 # 1 motor leg calf (14)
 
 # original test parameters
-w = 0.01	# beat parameter chould increase/decrease with 1% based on picked up beat
+w = 0.1	# beat parameter chould increase/decrease with 1% based on picked up beat
 # a = 0.4		
 # b = 0.8
 # c = 0.6
@@ -36,27 +36,29 @@ w = 0.01	# beat parameter chould increase/decrease with 1% based on picked up be
 
 # random.seed(8)
 # assume a, c 
-a = [random.random() for i in range(8)]
-c = [random.random() for i in range(8)]
 # print(a)
 # print(c)
 
 
 # w = 0.2	# beat parameter chould increase/decrease with 1% based on picked up beat
 # a = 0
-b = 1 #1
+# b = 1 #1
 # c = 0 # change phase
 # other continuous functions
 
 for i in range (10000):
     p.stepSimulation()
+
+    a = [random.random() for j in range(8)]
+    b = [random.random() for j in range(8)]
+    c = [random.random() for j in range(8)]
     
     if i >= 200:
         num_motors = random.randrange(1,8)
         motors = random.sample(range(8), num_motors)
-        # print(motors)
+        print(num_motors, motors)
         for n in motors:
-            p.setJointMotorControl2(robotId, jointIndex[n], controlMode=mode, targetPosition=(a[n]+b*sin(i*w+c[n])))
+            p.setJointMotorControl2(robotId, jointIndex[n], controlMode=mode, targetPosition=(a[n]+b[n]*sin(i*w+c[n])))
             # time.sleep(1./20.)
 
 	# 2 motor leg thigh (1)

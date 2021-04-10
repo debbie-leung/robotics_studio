@@ -32,7 +32,7 @@ jointIndex7= 7		# 1 motor leg calf (4)
 # b = 0.2		# 50/240
 # c = 0		# 0/240
 
-w = 0.2	# beat parameter chould increase/decrease with 1% based on picked up beat
+w = 0.1	# beat parameter chould increase/decrease with 1% based on picked up beat
 a = 0
 b = 1
 c = 0
