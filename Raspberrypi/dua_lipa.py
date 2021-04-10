@@ -36,17 +36,19 @@ c = 0
 while True:
     time_now = time.time()
 
-    # First move from 0-8s
-    front_right.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    back_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
-    front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
-    back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
+    # First move from 0-7s
+    while t < 7:
+        front_right.moveTimeWrite(a+b*sin(w*t+c), time=1000)
+        back_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
+        front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
+        back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
+    	t += 0.01
     time.sleep(1)
 
-    if time.time() == 7:
-        f.homing(1000)
+    # if time.time() == 7:
+    f.homing(1000)
 
-    # Second move
+    # Second move 7-17s
     side_right_top.moveTimeWrite(180, time=3)
     side_left_top.moveTimeWrite(180, time=3)
 
@@ -57,7 +59,14 @@ while True:
     front_left.moveTimeWrite(a+b*sin(w*t+c), time=1000)
     back_right.moveTimeWrite(a+b*sin(w*t+c),time=1000)
 
-    # Third move
-    # if time.time() == 17:
-    	
+    # # Third move 17-24s (switch from Second move)
+    # # if time.time() == 17:
+
+    # side_right_bottom.moveTimeWrite(a+b*cos(w*t+c), time=1000)
+    # side_left_bottom.moveTimeWrite(a+b*sin(w*t+c), time=1000)
+    # front_right.moveTimeWrite(a+b*cos(w*t+c), time=1000)
+    # back_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
+    # front_left.moveTimeWrite(a+b*cos(w*t+c), time=1000)
+    # back_right.moveTimeWrite(a+b*cos(w*t+c),time=1000)
+
 	
