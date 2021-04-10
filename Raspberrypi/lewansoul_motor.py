@@ -38,9 +38,9 @@ while t < 10:
     # Two sine waves out of phase   
     servo11.moveTimeWrite(a+b*sin(w*t+c), time = 10)
     y_servo11.append(servo11.getPhysicalPos())
-    servo12.moveTimeWrite(a+b*sin(w*t+c), time = 10)
+    servo12.moveTimeWrite(a+b*cos(w*t+c), time = 10)
     servo13.moveTimeWrite(a+b*cos(w*t+c), time = 10)
-    servo14.moveTimeWrite(a+b*cos(w*t+c), time = 10)
+    servo14.moveTimeWrite(a+b*sin(w*t+c), time = 10)
     t += 0.01
     
 #time = np.arange(0, t, 0.01)
