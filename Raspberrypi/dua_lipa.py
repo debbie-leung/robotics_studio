@@ -32,7 +32,7 @@ start_time = time.time()
 t = 0
 w = 2
 a = 120
-b = 30
+b = 50
 c = 0
 
 flag = True
@@ -41,12 +41,12 @@ while flag:
 
     # First move from 0-7s: wavy arms
     while t < 8.5:
-        FR.moveTimeWrite(a+35*sin(w*t+c))
-        SRB.moveTimeWrite(a+35*cos(w*t+c))
-        BR.moveTimeWrite(a+35*sin(w*t+c))
-        BL.moveTimeWrite(a+35*cos(w*t+c))
-        SLB.moveTimeWrite(a+35*sin(w*t+c))        
-        FL.moveTimeWrite(a+35*cos(w*t+c))   
+        FR.moveTimeWrite(a+b*sin(w*t+c))
+        SRB.moveTimeWrite(a+b*cos(w*t+c))
+        BR.moveTimeWrite(a+b*sin(w*t+c))
+        BL.moveTimeWrite(a+b*cos(w*t+c))
+        SLB.moveTimeWrite(a+b*sin(w*t+c))        
+        FL.moveTimeWrite(a+b*cos(w*t+c))   
         t += 0.0075
 
     # if time.time() == 7:
@@ -56,12 +56,12 @@ while flag:
     # Second move 7-17s: swirl around
     t = 0
     while t < 10:
-        FR.moveTimeWrite(a+20*sin(w*t+c))
-        SRB.moveTimeWrite(a+20*sin(w*t+c))
-        BR.moveTimeWrite(a+20*sin(w*t+10))
-        BL.moveTimeWrite(a+20*sin(w*t+10))
-        SLB.moveTimeWrite(a+20*sin(w*t+20))
-        FL.moveTimeWrite(a+20*sin(w*t+20))     
+        FR.moveTimeWrite(a+30*sin(w*t+c))
+        SRB.moveTimeWrite(a+30*sin(w*t+c))
+        BR.moveTimeWrite(a+30*sin(w*t+10))
+        BL.moveTimeWrite(a+30*sin(w*t+10))
+        SLB.moveTimeWrite(a+30*sin(w*t+20))
+        FL.moveTimeWrite(a+30*sin(w*t+20))     
         t += 0.0075
     
     # Third move 17-25s: lift arms and move front back legs
@@ -70,18 +70,18 @@ while flag:
     
     SRT.moveTimeWrite(150, time=200)
     SLT.moveTimeWrite(150, time=200)
-    time.sleep(0.25)
+    time.sleep(0.4)
     
     t = 0
-    while t < 12:
+    while t < 11:
         SRB.moveTimeWrite(a+b*sin(w*t+c))
-        SRT.moveTimeWrite(150+b*cos(w*t+c))
-        SLT.moveTimeWrite(150+b*sin(w*t+c))
+        SRT.moveTimeWrite(130+30*cos(w*t+c))
+        SLT.moveTimeWrite(130+30*sin(w*t+c))
         SLB.moveTimeWrite(a+b*cos(w*t+c))
-        FR.moveTimeWrite(a+40*sin(w*t+c))
-        BL.moveTimeWrite(a+40*sin(w*t+c))
-        FL.moveTimeWrite(a+40*sin(w*t+c))
-        BR.moveTimeWrite(a+40*sin(w*t+c))
+        FR.moveTimeWrite(a+b*sin(w*t+c))
+        BL.moveTimeWrite(a+b*sin(w*t+c))
+        FL.moveTimeWrite(a+b*sin(w*t+c))
+        BR.moveTimeWrite(a+b*sin(w*t+c))
         t += 0.01
     
     # Fourth move 24-32s: lift each motor up
@@ -99,7 +99,7 @@ while flag:
     SLB.moveTimeWrite(180, time=500)
     time.sleep(0.2)
     FL.moveTimeWrite(180, time=500)
-    time.sleep(0.5)
+    time.sleep(1)
     
     FL.moveTimeWrite(120, time=500)
     time.sleep(0.2)
@@ -112,43 +112,43 @@ while flag:
     SRB.moveTimeWrite(120, time=500)
     time.sleep(0.2)
     FR.moveTimeWrite(120, time=500)
-    time.sleep(0.5)
+    time.sleep(0.9)
     
-    SRB.moveTimeWrite(200, time=1000)
-    time.sleep(1)
-    SLB.moveTimeWrite(200, time=1000)
-    time.sleep(1)
-    SRB.moveTimeWrite(120, time=1000)
-    time.sleep(1)
-    SLB.moveTimeWrite(120, time=1000)
-    time.sleep(1)
+    SRT.moveTimeWrite(180, time=1000)
+    time.sleep(0.9)
+    SLT.moveTimeWrite(180, time=1000)
+    time.sleep(0.9)
+    SRT.moveTimeWrite(120, time=1000)
+    time.sleep(0.9)
+    SLT.moveTimeWrite(120, time=1000)
+    time.sleep(0.9)
     
     # Fifth move: stand on toes
     f.homing(servos, 300)
     time.sleep(0.5)
     
     t = 0
-    while t < 10:
-        SRB.moveTimeWrite(a+b*sin(w*t+c))
-        FR.moveTimeWrite(a+b*sin(w*t+c))
-        BR.moveTimeWrite(a+b*sin(w*t+c))
-        FL.moveTimeWrite(a+b*sin(w*t+c))
-        BL.moveTimeWrite(a+b*sin(w*t+c))
-        SLB.moveTimeWrite(a+b*sin(w*t+c))
+    while t < 9:
+        SRB.moveTimeWrite(a+b*cos(w*t+c))
+        FR.moveTimeWrite(a+b*cos(w*t+c))
+        BR.moveTimeWrite(a+b*cos(w*t+c))
+        FL.moveTimeWrite(a+b*cos(w*t+c))
+        BL.moveTimeWrite(a+b*cos(w*t+c))
+        SLB.moveTimeWrite(a+b*cos(w*t+c))
         t += 0.0075
     
-    SRB.moveTimeWrite(120)
-    FR.moveTimeWrite(120)
-    BR.moveTimeWrite(120)
-    time.sleep(0.5)
+    SRB.moveTimeWrite(120, time=50)
+    FR.moveTimeWrite(120, time=50)
+    BR.moveTimeWrite(120, time=50)
+    time.sleep(0.75)
         
-    FL.moveTimeWrite(120)
-    BL.moveTimeWrite(120)
-    SLB.moveTimeWrite(120)
-    time.sleep(0.5)
+    FL.moveTimeWrite(120, time=50)
+    BL.moveTimeWrite(120, time=50)
+    SLB.moveTimeWrite(120, time=50)
+    time.sleep(1)
     
     t = 0
-    while t < 20:
+    while t < 9:
         SRB.moveTimeWrite(a+b*sin(w*t+c))
         FR.moveTimeWrite(a+b*sin(w*t+c))
         BR.moveTimeWrite(a+b*sin(w*t+c))
@@ -165,14 +165,12 @@ while flag:
     SRB.moveTimeWrite(120)
     FR.moveTimeWrite(120)
     BR.moveTimeWrite(120)
-    time.sleep(0.5)
+    time.sleep(1.5)
          
     # Sixth move: move sideways
-    f.homing(servos, 300)
-    time.sleep(0.5)
     
     t = 0
-    while t < 11:
+    while t < 8:
         SRB.moveTimeWrite(a+40*sin(w*t+c))
         FR.moveTimeWrite(a+40*sin(w*t+c))
         BR.moveTimeWrite(a+40*sin(w*t+c))
@@ -181,17 +179,53 @@ while flag:
         SLB.moveTimeWrite(a+40*cos(w*t+c))
         t += 0.0075
         
-    
+    FL.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    SLB.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    BL.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    BR.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    SRB.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    FR.moveTimeWrite(120, time=500)
+    time.sleep(0.75)
     
     t = 0
-    while t < 5:
-        FR.moveTimeWrite(a+b*sin(w*t+c))        
-        FR.moveTimeWrite(a+b*sin(w*t+c))
-        BR.moveTimeWrite(a+b*cos(w*t+c))
-        BL.moveTimeWrite(a+b*cos(w*t+c))
-        SRT.moveTimeWrite(a+20*cos(w*t+c))
-        SLT.moveTimeWrite(a+20*sin(w*t+c))
+    while t < 8:
+        SRB.moveTimeWrite(a+40*cos(w*t+c))
+        FR.moveTimeWrite(a+40*cos(w*t+c))
+        BR.moveTimeWrite(a+40*cos(w*t+c))
+        FL.moveTimeWrite(a+40*sin(w*t+c))
+        BL.moveTimeWrite(a+40*sin(w*t+c))
+        SLB.moveTimeWrite(a+40*sin(w*t+c))
         t += 0.0075
+    
+    FR.moveTimeWrite(120, time=500)
+    time.sleep(0.75)
+    SRB.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    BR.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    BL.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    SLB.moveTimeWrite(120, time=500)
+    time.sleep(0.2)
+    FL.moveTimeWrite(120, time=500)
+    time.sleep(0.75)
+    
+    
+    # Weird code
+#    t = 0
+#    while t < 5:
+#        FR.moveTimeWrite(a+b*sin(w*t+c))        
+#        FR.moveTimeWrite(a+b*sin(w*t+c))
+#        BR.moveTimeWrite(a+b*cos(w*t+c))
+#        BL.moveTimeWrite(a+b*cos(w*t+c))
+#        SRT.moveTimeWrite(a+20*cos(w*t+c))
+#        SLT.moveTimeWrite(a+20*sin(w*t+c))
+#        t += 0.0075
     
 #    t = 0
 #    while t < 12:
