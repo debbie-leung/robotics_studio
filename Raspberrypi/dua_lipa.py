@@ -39,7 +39,7 @@ flag = True
 while flag:
     time_now = time.time()
 
-    # First move from 0-7s
+    # First move from 0-7s: wavy arms
     while t < 8.5:
         front_right.moveTimeWrite(a+b*sin(w*t+c))
         side_right_bottom.moveTimeWrite(a+b*cos(w*t+c))
@@ -53,7 +53,7 @@ while flag:
     f.homing(servos, 200)
     time.sleep(0.5)
 
-    # Second move 7-17s
+    # Second move 7-17s: lift arms and move front back legs
     side_right_top.moveTimeWrite(160, time=1000)
     side_left_top.moveTimeWrite(160, time=1000)
 
@@ -69,7 +69,7 @@ while flag:
         back_right.moveTimeWrite(a+b*sin(w*t+c))
         t += 0.01
     
-    # # Third move 17-24s (switch from Second move)
+    # # Third move 17-24s: Move sideways
     
     f.homing(servos, 300)
     time.sleep(0.5)
@@ -84,7 +84,7 @@ while flag:
         side_left_bottom.moveTimeWrite(a+b*cos(w*t+c))
         t += 0.0075
         
-    # Fourth move
+    # Fourth move: stand on toes
     f.homing(servos, 300)
     time.sleep(0.5)
     
